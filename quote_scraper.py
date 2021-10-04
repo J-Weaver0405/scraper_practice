@@ -11,6 +11,7 @@ URL = 'http://quotes.toscrape.com/tableful'
 html = requests.get(URL)
 bs = BeautifulSoup(html.text, 'html.parser')
 page_counter =  1
+page_max = 3
 
 # Tries to open the file
 try:
@@ -42,8 +43,8 @@ try:
             # for tag in quote.findAll('a', {'class': 'tag'}):
             #     tags.append(tag.text)
             # # Writes the current quote,author and tags to a csv file
-            # dictwriter.writerow(
-            #     {'quote': text, 'author': author, 'tags': tags})
+            dictwriter.writerow(
+                {'quote': quote, 'author': author, 'tags': tags})
             print("Tags:", tags)
             print("Quote:", quote)
             print("Author:",author)
@@ -55,6 +56,8 @@ try:
 
 
         page_counter += 1
+        if page_counter < page_max: 
+            break
         # Gets and parses the html file of next page
         page_req = os.path.join(URL ,'page/') + str(page_counter)
 
