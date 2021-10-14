@@ -1,6 +1,7 @@
 import pytest
 from new_scraper import *
 
+# add test fixtures for scraper
 
 @pytest.fixture
 def page_request(): 
